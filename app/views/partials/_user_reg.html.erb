@@ -1,0 +1,9 @@
+<form action='/users' method='POST'>
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+  <input type='text' name='user[name]' placeholder='Name'><br>
+  <input type='text' name='user[username]' placeholder='Username'><br>
+  <input type='password' name='user[password]' placeholder='Password'><br>
+  <input type='password' name='user[password_confirmation]' placeholder='Confirm Password'><br>
+  <input type='date' name='user[date_hired]'><br>
+  <input type='submit' value='Register'>
+</form>

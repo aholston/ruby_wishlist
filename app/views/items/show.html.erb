@@ -1,0 +1,7 @@
+<h2><%= @item.name %></h2>
+
+<p>Users who added this product/item to their wish list.</p>
+
+<% @item.wished_by.each do |user| %>
+  <p><%= user.name %></p>
+<% end %>

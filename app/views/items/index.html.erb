@@ -1,0 +1,56 @@
+<h2>Hello, <%= @user.name %></h2>
+
+<h4>Your Wish List</h4>
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Added By</th>
+    <th>Date Added</th>
+    <th>Action</th>
+  </tr>
+  <% @items.each do |item| %>
+    <% if @user.wished_items.include?(item) %>
+    <tr>
+      <td><a href='/items/<%= item.id %>'><%= item.name %></a></td>
+      <td><% item.user %></td>
+      <td><%= item.created_at %></td>
+      <% if item.user == @user %>
+      <td>
+        <a href='/items/<%= item.id %>' data-method='DELETE'>Delete</a>
+      </td>
+      <% else %>
+      <td>
+        <a href='/items/<%= item.id %>/wishes' data-method='DELETE'>Remove from my Wishlist</a>
+      </td>
+      <% end %>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<h4>Other Users Wish List</h4>
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Added By</th>
+    <th>Date Added</th>
+    <th>Action</th>
+  </tr>
+  <% @items.each do |item| %>
+    <% if !@user.wished_items.include?(item) %>
+    <tr>
+      <td><a href='/items/<%= item.id %>'><%= item.name %></a></td>
+      <td><% item.user %></td>
+      <td><%= item.created_at %></td>
+      <td>
+        <a href='/items/<%= item.id %>/wishes' data-method='POST'>Add to my Wishlist</a>
+      </td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
+<br>
+<br>
+<br>
+
+<a href='/items/new'>Add Item</a>
